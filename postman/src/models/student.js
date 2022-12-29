@@ -19,11 +19,11 @@ const StudentSchema=new mongoose.Schema({
         }
         },
     Phone:{
-        type:Number,
-        min:11,
-        max:11,
+        type:String,
+        // min:11,
+        // max:11,
         required:true,
-        unique:true,
+        // unique:true,
     },
     address:{
         type:String,
