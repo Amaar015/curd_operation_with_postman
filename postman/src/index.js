@@ -17,6 +17,24 @@ app.post("/students",async(req,res)=>{
   }
   
 })
- app.listen(port,()=>{
-     console.log(`listening form the ${port} ....`)
- })
+ 
+
+
+//  throgh get methode
+
+app.get("/students",async(req,res)=>{
+     try{
+      const stduentData= await Student.find();
+      res.send(stduentData);     
+    }catch(err){
+       res.send(err);
+    }
+})
+
+
+
+// lisstening from port
+
+app.listen(port,()=>{
+    console.log(`listening form the ${port} ....`)
+})
