@@ -7,13 +7,13 @@ const Student =require('./models/student')
 
 // update the document 
 
-app.patch('/students/:id',async (req,res)=>{
+app.patch('/students/:name1',async (req,res)=>{
     try{
         const id=req.params.id;
-        const UpdateStudent=await Student.findByIdAndUpdate(id,req.body,{
+        const UpdateStudent=await Student.findByIdAndUpdate(name1,req.body,{
             new:true
         });
-        if(!id){
+        if(!name1){
           res.status(404).send('Student Dose not exist')
         }             
         return res.status(201).send(UpdateStudent);
