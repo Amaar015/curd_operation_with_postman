@@ -14,8 +14,8 @@ const UserSchema=new mongoose.Schema({
         trim:true
        } ,
        dob:{
-        type:Date,
-        required:true,
+        type:Number,
+       //  required:true,
         trim:true
        } ,
        country:{
