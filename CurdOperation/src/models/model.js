@@ -40,6 +40,6 @@ const UserSchema=new mongoose.Schema({
 
 // create a new collection 
 
-const User=new mongoose.mongoose.model("User",UserSchemaSchema);
+const User=new mongoose.mongoose.model("User",UserSchema);
 
 module.exports=User;
