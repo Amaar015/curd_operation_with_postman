@@ -11,12 +11,12 @@
 <div class="mains">
     <div class="form_main">
          <h2>Registeration Form</h2>
-         <form  action="/add" method="POST">
+         <form  action="/add" method="POST" enctype="multipart/form-data">
             <input type="text" class="input" name="name" value="" placeholder="Enter Name">
             <input type="email" class="input" name="email" value="" placeholder="Email">
             <input type="number" class="input" name="phone" value="" placeholder="Phone Number">
-            <input type="file" class="input">
-            <button class="btn-login" >Register</button>  
+            <input type="file" name="image" class="input">
+            <button class="btn-login" type="submit">Register</button>  
 
          </form>
              </div>
