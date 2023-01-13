@@ -4,6 +4,7 @@ const express =require('express')
 const User=require('./backend/models')
 const multer=require('multer')
 const path =require('path');
+const { type } = require('os');
 // create a express router
 const router=new express.Router();
 // define a express router
@@ -32,10 +33,25 @@ var upload=multer({
                 Phone:req.body.phone,
                 image:req.file.filename
                     
-                                })
-                                const result=await User.insertMany([user]);
-                                console.log(result);
-                                }catch(err){
+                                });
+                                user.save((err)=>{
+                                        if(err){
+                                                res.json({message:err.message, type:"danger"});
+                                        }else{
+                                                req.session.message={
+                                                        type:"Success",
+                                                        message:"User added Successfuly",
+                                                }
+                                                messages=message.message;
+                                                types=message.type;
+
+                                                res.redirect('/');
+                                        }
+                                });
+                                // const result=await User.insertMany([user]);
+                                // console.log(result);
+                                         
+                        }catch(err){
                                 console.log(err);
                                 }
                 //     }
@@ -46,15 +62,27 @@ var upload=multer({
                 
         })
 
+        // get all users
         
-        
-router.get("/",async(req,res)=>{
+router.get("/",(req,res)=>{
        
-        const results =await User.find();
-        res.render('index',{
-                image:'backend/image/'+results[10].image});
-        console.log(results[10].image);
-        
+         User.find().exec((err,users)=>{
+         if(err){
+                res.json({message:err.message});
+
+         }else{
+            res.render('',{
+                Key:0,
+                 users:users
+
+            })
+        // console.log(users);
+         }
+        });
+//         res.render('index',{
+//                 image:'backend/image/'+results[1].image});
+//                 console.log(results[1].image);
+                  
 })
 
 
