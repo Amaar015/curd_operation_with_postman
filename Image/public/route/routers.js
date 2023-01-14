@@ -4,7 +4,7 @@ const express =require('express')
 const User=require('./backend/models')
 const multer=require('multer')
 const path =require('path');
-const { type } = require('os');
+// const { type } = require('os');
 // create a express router
 const router=new express.Router();
 // define a express router
@@ -21,31 +21,28 @@ var storage=multer.diskStorage({
 })
 var upload=multer({
         storage:storage
-        }).single('image');
+        })
 
-        router.post("/add",upload,(req,res)=>{
+        router.post("/add",upload.single('image'),async(req,res)=>{
                    
-                // const Insert=async()=>{
-                        try{     
-                        const user=new User({
-                          name:req.body.name,
-                          email:req.body.email,
-                          Phone:req.body.phone,
-                          image:req.file.filename
-                          });
-                 user.save((err)=>{
-                 if(err){
-                 res.json({message:err.message, type:"danger"});
-                  }else{
-                        req.session.message={
-                  type:"success",
-                   message:"User added Successfuly",}
-                //  messages=message.message;
-                // types=message.type;
-                // console.log(messages);                                     
-                res.render('/');
-                    }
-                    });
+                try{     
+                const user=new User({
+                name:req.body.name,
+                email:req.body.email,
+                Phone:req.body.phone,
+                image:req.file.filename
+                });
+                user.save((err)=>{
+                if(err){
+                       res.json({message:err.message, type:"danger"})
+                }else{
+                req.session.message ={
+                type:"success",
+                message:"User added Successfuly",
+                };
+                 res.redirect("/");
+                 }
+                });
                                 // const result=await User.insertMany([user]);
                                 // console.log(result);
                                          

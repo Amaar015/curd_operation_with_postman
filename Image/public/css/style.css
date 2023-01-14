@@ -8,7 +8,9 @@
     /* padding-left:30rem; */
 }
 
-
+#messg{
+    background: #3dee84;
+}
 .form_main{
     border-radius:20px;
     /* margin-top:9rem; */
