@@ -40,6 +40,7 @@ var upload=multer({
                 type:"success",
                 message:"User added Successfuly",
                 };
+                
                  res.redirect("/");
                  }
                 });
@@ -85,9 +86,27 @@ router.get("/add",(req,res)=>{
         res.render('add') 
 })
 
-router.get("/update",(req,res)=>{
-        res.send('Update user') 
+router.get("/edit/:id",(req,res)=>{
+         let id=req.params.id;
+         User.findById(id,(err,user)=>{
+                if(err){
+                        res.redirect("/");
+                }else{
+                        if(user==null){
+                        res.redirect("/");
+                }else{
+                    res.render("edit_user",{
+                        title:"Edit user",
+                        user:user,
+                    })
+                }
+                }
+
+         })
 })
 
+router.get("/delete",(req,res)=>{
+        res.send('Update user') 
+})
 // export module
 module.exports=router;
