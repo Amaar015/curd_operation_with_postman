@@ -21,33 +21,31 @@ var storage=multer.diskStorage({
 })
 var upload=multer({
         storage:storage
-        })
+        }).single('image');
 
-        router.post("/add",upload.single('image'),async(req,res)=>{
+        router.post("/add",upload,(req,res)=>{
                    
                 // const Insert=async()=>{
                         try{     
                         const user=new User({
                           name:req.body.name,
-                email:req.body.email,
-                Phone:req.body.phone,
-                image:req.file.filename
-                    
-                                });
-                                user.save((err)=>{
-                                        if(err){
-                                                res.json({message:err.message, type:"danger"});
-                                        }else{
-                                                req.session.message={
-                                                        type:"Success",
-                                                        message:"User added Successfuly",
-                                                }
-                                                messages=message.message;
-                                                types=message.type;
-
-                                                res.redirect('/');
-                                        }
-                                });
+                          email:req.body.email,
+                          Phone:req.body.phone,
+                          image:req.file.filename
+                          });
+                 user.save((err)=>{
+                 if(err){
+                 res.json({message:err.message, type:"danger"});
+                  }else{
+                        req.session.message={
+                  type:"success",
+                   message:"User added Successfuly",}
+                //  messages=message.message;
+                // types=message.type;
+                // console.log(messages);                                     
+                res.render('/');
+                    }
+                    });
                                 // const result=await User.insertMany([user]);
                                 // console.log(result);
                                          
