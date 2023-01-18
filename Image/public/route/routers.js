@@ -64,7 +64,7 @@ router.get("/",(req,res)=>{
        
          User.find().exec((err,users)=>{
          if(err){
-                res.json({message:err.message});
+                res.json({message:err.message,type:"danger"});
 
          }else{
             res.render('',{
@@ -98,6 +98,7 @@ router.get("/edit/:id",(req,res)=>{
                     res.render("edit_user",{
                         title:"Edit user",
                         user:user,
+                
                     })
                 }
                 }
