@@ -13,18 +13,18 @@ const session = require('express-session');
 app.use(express.json())
 // use to get the html value from inputs
 app.use(express.urlencoded({extended:false}))
-// app.use(
-//     session({
-//         secret:"my secrete key",
-//         saveUninitialized:true,
-//         resave:false
-//     })
-// )
-// app.use((req,res,next)=>{
-//     res.locals.message=req.session.message;
-//     delete req.session.message;
-//     next();
-// })
+app.use(
+    session({
+        secret:"my secrete key",
+        saveUninitialized:true,
+        resave:false
+    })
+)
+app.use((req,res,next)=>{
+    res.locals.message=req.session.message;
+    delete req.session.message;
+    next();
+})
 // select the path values
 console.log(__dirname);
 const templatePath=path.join(__dirname,'public/template/views')
