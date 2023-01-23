@@ -26,7 +26,7 @@ app.use((req,res,next)=>{
     next();
 })
 // select the path values
-console.log(__dirname);
+// console.log(__dirname);
 const templatePath=path.join(__dirname,'public/template/views')
 const partialsPath=path.join(__dirname,'public/template/partials');
 const static_path=path.join(__dirname,'public')

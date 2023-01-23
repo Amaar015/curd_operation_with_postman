@@ -4,25 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit User</title>
- <link rel="stylesheet" href="backend/css/style.css">
+    <title>Edit User {{users._id}}</title>
+ <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     {{>header}}
 <div class="mains">
     <div class="form_main">
-         <h2 >Update Form {{user.name}}</h2>
-         <form  action="/update/{{user._id}}" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction:column; gap:2rem;">
-            <input type="text" class="input" value={{user.name}} name="name"  placeholder="Enter Name" style="width:30rem;">
-            <input type="email" class="input" name="email" value={{user.email}} placeholder="Email" style="width:30rem;">
-            <input type="number" class="input" name="phone" value={{user.Phone}} placeholder="Phone Number" style="width:30rem;">
+        <div class="card-header bg-success">
+         <h2 >Update Form {{user.name}} </h2>
+         </div>
+         <form  action="/update/{{user._id}}" method="POST" enctype="multipart/form-data" >
+            <input type="text" class="input" value={{user.name}} name="name"  placeholder="Enter Name" >
+            <input type="email" class="input" name="email" value={{user.email}}  placeholder="Email" >
+            <input type="number" class="input" name="phone" value={{user.Phone}} placeholder="Phone Number">
             <div class="image" >
             <input type="file" name="new_image" class="input">
-           <img src="./../../backend/image/{{user.image}}" alt="backend/image/{{user.image}}" style="width:6rem; height:6rem" class="img-thumbnail mt-1">
+           <img src="../../backend/image/{{user.image}}" alt="public/backend/image/{{users.image}}" style="width:6rem; height:6rem; margin-left:2rem" class="img-thumbnail mt-1">
             </div>
-                <input type="hidden" name="old_image" value="./../../backend/image/{{user.image}}">
-            <button class="btn-login btn btn-success" type="submit" style="width:30rem;">Update Data</button>  
+                <input type="hidden" name="old_image" value="{{user.image}}">
+            <button class="btn-login btn btn-success" type="submit" >Update Data</button>  
          </form>
              </div>
     </div>
